@@ -15,19 +15,20 @@ export default function Gallery({ pepes }: Props) {
 
 
     useEffect(() => {
+        const ref = sentinelRef.current
         const observer = new IntersectionObserver(entries => {
             if (entries[0].isIntersecting) {
                 loadItems();
             }
         }, { threshold: 0.5, root: null });
 
-        if (sentinelRef.current) {
-            observer.observe(sentinelRef.current);
+        if (ref) {
+            observer.observe(ref);
         }
 
         return () => {
-            if (sentinelRef.current) {
-                observer.unobserve(sentinelRef.current)
+            if (ref) {
+                observer.unobserve(ref)
             }
         }
     }, [items])

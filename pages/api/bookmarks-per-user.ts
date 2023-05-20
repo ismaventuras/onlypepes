@@ -1,26 +1,9 @@
 import { getServerSession } from "next-auth/next"
 import { authOptions } from "./auth/[...nextauth]"
 import type { NextApiRequest, NextApiResponse } from 'next';
-import prisma from "@/app/lib/prisma";
+import { getUser } from "@/app/actions/getUserWithookmarks";
 
-
-async function getUser(email: string) {
-    try {
-        return await prisma.user.findFirst({
-            where:{
-                email
-            },
-            include:{
-                bookmarks:true
-            }
-        })        
-    } catch (error) {
-        console.error("getUser", error);
-        return null
-    }
-}
-
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+export default async function handler(req: NextApiRequest, res: NextApiResponse){
     if (req.method === 'POST') {
         const session = await getServerSession(req, res, authOptions)
         if (session) {

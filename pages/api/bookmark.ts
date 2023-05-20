@@ -32,7 +32,7 @@ async function handleBookmark(email: string, pepeId: number, method: ValidMethod
     }
 }
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+export default async function handler(req: NextApiRequest, res: NextApiResponse){
     const session = await getServerSession(req, res, authOptions)
     if (!session) {
         return res.status(401).json({

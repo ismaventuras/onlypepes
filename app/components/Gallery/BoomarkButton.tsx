@@ -20,7 +20,7 @@ export default function BookmarkButon({ item }: Props) {
         const existsBookmark = session?.user.bookmarks?.some(bookmark => bookmark.id === item.id)
         setBookmarked(existsBookmark)
 
-    }, [session])
+    }, [session, item.id])
 
 
 
