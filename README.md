@@ -8,13 +8,19 @@ allow users to react to pepes
 allow users to propose suggestion
 
 
+## install
+on server
+- install nodejs (scripts/install-nodejs.hs)
+- install postgresql
+- run scripts/init-postgres.sh to create the db user
+- run: npm rundb:data:init
+
 
 
 ## Project layout
 
 |
 |- app : nextjs app dir
-|- lib : libraries used on backend components
 |- pages : old nextjs dir, needed for API routes
 |- prisma : prisma orm database management
 |- public : nextjs public folder

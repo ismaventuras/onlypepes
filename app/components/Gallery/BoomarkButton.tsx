@@ -1,36 +1,23 @@
 'use client'
-import type { Pepe } from "@prisma/client";
-import { MouseEvent, useEffect, useState } from "react"
+import { type Pepe } from "@prisma/client";
+import { type MouseEvent, useState } from "react"
 import { useSession } from 'next-auth/react';
-import { BookmarkIcon,BookmarkSlashIcon } from "@heroicons/react/20/solid";
+import { BookmarkIcon, BookmarkSlashIcon } from "@heroicons/react/20/solid";
 
 type Props = {
     item: Pepe;
+    isBookmarked?: boolean;
 }
 
-type BookmarkMethods = 'CREATE' | 'DELETE'
-
-export default function BookmarkButon({ item }: Props) {
+export default function BookmarkButon({ item, isBookmarked }: Props) {
     const { data: session } = useSession()
-
-    const [bookmarked, setBookmarked] = useState<boolean>();
-    const [loading, setLoading] = useState(false)
-
-    useEffect(() => {
-        const existsBookmark = session?.user.bookmarks?.some(bookmark => bookmark.id === item.id)
-        setBookmarked(existsBookmark)
-
-    }, [session, item.id])
-
-
+    const [bookmarked, setBookmarked] = useState(isBookmarked);
 
     async function onBookmarkClick(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
-        setLoading(true)
-        const response = await fetch("/api/bookmark", {
+        const response = await fetch("/api/bookmarks", {
             body: JSON.stringify({
                 pepeId: item.id,
-                method: bookmarked ? 'DELETE' : 'CREATE'
             }),
             headers: {
                 'Content-Type': "application/json"
@@ -38,31 +25,19 @@ export default function BookmarkButon({ item }: Props) {
             method: 'POST'
         })
         if (response.ok) {
-            const { method } = await response.json()
-            if (method === 'CREATE') {
-                setBookmarked(true)
-            } else {
-                setBookmarked(false)
-            }
+            setBookmarked(prevValue => !prevValue)
         }
-        setLoading(false)
     }
 
-    if(!session){
+    if (!session) {
         return <></>
     }
-    // if(loading){
-    //     return(
-    //         <div>
-    //             <p>loading</p>
-    //         </div>
-    //     )
-    // }
+
     return (
         <button
-            onClick={onBookmarkClick}            
+            onClick={onBookmarkClick}
         >
-            {!bookmarked ? <BookmarkIcon  className="h-8 w-8"/> : <BookmarkSlashIcon className="h-8 w-8" />}
+            {!bookmarked ? <BookmarkIcon className="h-8 w-8" /> : <BookmarkSlashIcon className="h-8 w-8" />}
         </button>
     )
 }

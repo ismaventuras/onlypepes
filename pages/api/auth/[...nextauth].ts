@@ -3,7 +3,6 @@ import GoogleProvider from "next-auth/providers/google"
 import DiscordProvider from "next-auth/providers/discord"
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import prisma from "@/app/lib/prisma"
-import { getUserBookmarks } from "@/app/actions/getUserBookmarks"
 
 
 
@@ -19,19 +18,22 @@ export const authOptions: AuthOptions = {
             clientSecret: process.env.GOOGLE_CLIENT_SECRET || ""
         })
     ],
-    callbacks:{
-        async session({session,user,token}) {
-            try {
-                const dbUser = await getUserBookmarks(user.id)
-                const newUser = {...user, bookmarks: dbUser?.bookmarks || []}
-                
-                return {...session,user:newUser}                
-            } catch (error) {
-                console.error(error)
-                return session
-            }
-        },
+    session:{
+        strategy:"jwt"
     }
+    // callbacks:{
+    //     async session({session,user,token}) {
+    //         try {
+    //             const dbUser = await getUserBookmarks(user.id)
+    //             const newUser = {...user, bookmarks: dbUser?.bookmarks || []}
+                
+    //             return {...session,user:newUser}                
+    //         } catch (error) {
+    //             console.error(error)
+    //             return session
+    //         }
+    //     },
+    // }
 }
 
 const handler = NextAuth(authOptions)

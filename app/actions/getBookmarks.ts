@@ -1,9 +1,9 @@
 import prisma from "../lib/prisma";
 
-export async function getUserBookmarks(id:string){
+export async function getBookmarks(email:string){
     try {
         return await prisma.user.findUnique({
-            where: {id},
+            where: {email},
             select: {bookmarks:true}
         })    
     } catch (error) {

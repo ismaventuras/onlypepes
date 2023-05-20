@@ -3,10 +3,11 @@ import { Pepe } from "@prisma/client"
 import GalleryItem from "./GalleryItem"
 import { useEffect, useRef, useState } from "react"
 
-type Props = {
-    pepes: Pepe[]
+type GalleryProps = {
+    pepes: Pepe[];
+    bookmarks?: Pepe[];
 }
-export default function Gallery({ pepes }: Props) {
+export default function Gallery({ pepes, bookmarks }: GalleryProps) {
     const pageSize = 20
     const sentinelRef = useRef(null);
 
@@ -17,10 +18,10 @@ export default function Gallery({ pepes }: Props) {
     useEffect(() => {
         const ref = sentinelRef.current
         const observer = new IntersectionObserver(entries => {
-            if (entries[0].isIntersecting) {
+            if (entries[0].isIntersecting && items.length < pepes.length) {
                 loadItems();
             }
-        }, { threshold: 0.5, root: null });
+        }, { threshold: 1, root: null });
 
         if (ref) {
             observer.observe(ref);
@@ -45,9 +46,11 @@ export default function Gallery({ pepes }: Props) {
     return (
         <>
             <div className="grid md:grid-cols-2 gap-12">
-                {items.map(pepe => (
-                    <GalleryItem item={pepe} key={pepe.id} />
-                ))}
+                {items.map(pepe => {
+                    const isBookmarked = bookmarks?.some(bookmark => bookmark.id === pepe.id)
+                    return <GalleryItem item={pepe} key={pepe.id} isBookmarked={isBookmarked} />
+
+                })}
             </div>
             <div ref={sentinelRef} className="h-1 mt-20" />
         </>

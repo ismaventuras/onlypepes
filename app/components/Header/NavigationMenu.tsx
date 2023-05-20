@@ -35,13 +35,13 @@ export default function NavigationMenu() {
             <Menu.Item>
               {({ active }) => (
                 <Link
-                  href="/pepes"
+                  href="/gallery"
                   className={classNames(
                     active ? 'bg-green-800 text-slate-100' : 'text-slate-300',
                     'block px-4 py-2 text-sm'
                   )}
                 >
-                  Pepes
+                  Gallery
                 </Link>
               )}
             </Menu.Item>

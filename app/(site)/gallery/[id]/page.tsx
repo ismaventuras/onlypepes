@@ -1,14 +1,14 @@
 import Image from "next/image";
 import { getPepeById } from "@/app/actions/getPepeById";
+import PepeNotFound from "@/app/components/PepeNotFound";
 
 
 export default async function SinglePepe({ params }: { params: { id: string } }) {
-    const pepe = await getPepeById(Number(params.id));
+    const id = Number(params.id)
+    const pepe = await getPepeById(id);
 
     if (!pepe) return (
-        <div>
-            not found
-        </div>
+        <PepeNotFound />
     )
 
     return (

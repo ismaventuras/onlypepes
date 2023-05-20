@@ -1,7 +1,8 @@
 import fs from 'fs/promises'
 import { Pepe } from '@prisma/client'
 import path from 'path'
-const IMAGES_URL = "https://pepe.ismaelb.dev/images/"
+//const IMAGES_URL = "https://pepe.ismaelb.dev/images/"
+const IMAGES_URL = "https://cdn.onlypepes.xyz/images/"
 const INIT_DATA_PATH = path.join('db', 'init_data')
 const currentPepeAmount = 8798
 
