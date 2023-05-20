@@ -3,8 +3,8 @@
 #   chmod +x setup_postgres.sh
 #   npx dotenv -e .env bash -c ./postgresql.sh
 
-sudo apt-get update
-sudo apt install -y postgresql
+#sudo apt-get update
+#sudo apt install -y postgresql
 
 source .env
 
