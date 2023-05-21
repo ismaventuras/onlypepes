@@ -8,8 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "db:docker:init": "docker run -d -p 5432:5432 -v /dev-db:/var/lib/postgresql/data --env-file .env --name dev-db postgres:latest",
-    "db:data:generate": "dotenv -e .env -- ts-node ./db/generate-init-data.ts",
-    "db:data:init": "prisma migrate dev && ts-node db/load-init-data.ts",
+    "db:data:generate": "dotenv -e .env -- ts-node ./scripts/db/generate-init-data.ts",
+    "db:data:init": "prisma migrate dev && ts-node ./scripts/db/seed-db.ts",
     "db:config:init": "./scripts/init-postgres.sh",
     "prod:start":"next build && pm2 start ecosystem.config.js",
     "prod:logs":"pm2 logs"

@@ -18,7 +18,7 @@ export default function ProfileMenu() {
       <div>
         <Menu.Button className={'flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800'}>
           <span className="sr-only">Open user menu</span>
-          <Image alt='' src={'/pepe-example.png'} width={32} height={32} className='h-8 w-8 rounded-full'/>
+          <Image alt='' src={'/images/pepe-example.png'} width={32} height={32} className='h-8 w-8 rounded-full'/>
         </Menu.Button>
       </div>
 

@@ -3,6 +3,7 @@ import { type Pepe } from "@prisma/client";
 import { type MouseEvent, useState } from "react"
 import { useSession } from 'next-auth/react';
 import { BookmarkIcon, BookmarkSlashIcon } from "@heroicons/react/20/solid";
+import toggleBookmarkClient from "@/app/actions/toggleBookmarkClient";
 
 type Props = {
     item: Pepe;
@@ -15,18 +16,8 @@ export default function BookmarkButon({ item, isBookmarked }: Props) {
 
     async function onBookmarkClick(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
-        const response = await fetch("/api/bookmarks", {
-            body: JSON.stringify({
-                pepeId: item.id,
-            }),
-            headers: {
-                'Content-Type': "application/json"
-            },
-            method: 'POST'
-        })
-        if (response.ok) {
-            setBookmarked(prevValue => !prevValue)
-        }
+        const ok = await toggleBookmarkClient(item.id)
+        if (ok) setBookmarked(prevValue => !prevValue)
     }
 
     if (!session) {

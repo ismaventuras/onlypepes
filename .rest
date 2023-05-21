@@ -1,9 +1,0 @@
-### should not work
-GET  http://localhost:3000/api/bookmark
-Content-Type: application/json
-
-
-### should return no session
-POST http://localhost:3000/api/bookmark
-Content-Type: application/json
-

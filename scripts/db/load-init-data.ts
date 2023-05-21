@@ -1,9 +1,11 @@
 import fs from 'fs/promises'
 import {PrismaClient} from '@prisma/client'
+import path from 'path'
 const prisma = new PrismaClient()
+const INIT_DATA_PATH = path.join('scripts','db', 'init_data', 'init_pepes.json')
 
 async function loadInitData(){
-    const fileData =  await fs.readFile('db/init_data/init_pepes.json','utf-8')
+    const fileData =  await fs.readFile(INIT_DATA_PATH,'utf-8')
     const data = JSON.parse(fileData)
     const createMany = await prisma.pepe.createMany({
         data,
