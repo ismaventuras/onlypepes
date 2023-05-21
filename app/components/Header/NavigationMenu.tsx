@@ -45,6 +45,19 @@ export default function NavigationMenu() {
                 </Link>
               )}
             </Menu.Item>
+            <Menu.Item>
+              {({ active }) => (
+                <Link
+                  href="/about"
+                  className={classNames(
+                    active ? 'bg-green-800 text-slate-100' : 'text-slate-300',
+                    'block px-4 py-2 text-sm'
+                  )}
+                >
+                  About
+                </Link>
+              )}
+            </Menu.Item>
           </div>
         </Menu.Items>
       </Transition>

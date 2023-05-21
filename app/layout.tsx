@@ -18,12 +18,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${montserrat.className} bg-slate-800 text-slate-200 container mx-auto max-w-6xl`}>
+      <body className={`${montserrat.className} bg-slate-800 text-slate-200 container mx-auto max-w-6xl flex flex-col min-h-screen`}>
         <NextAuthContext>
           <Header/>
-          <main className='p-2'>
+          <main className='p-2 flex-grow'>
             {children}
           </main>
+
         </NextAuthContext>
       </body>
     </html>
