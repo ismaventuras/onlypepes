@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images:{
-        domains:['pepe.ismaelb.dev','cdn.onlypepes.xyz']
+        domains:['cdn.onlypepes.xyz','upload.wikimedia.org']
     }
 }
 
