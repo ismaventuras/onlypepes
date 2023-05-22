@@ -18,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${montserrat.className} bg-slate-800 text-slate-200 container mx-auto max-w-6xl flex flex-col min-h-screen`}>
+      <body className={`${montserrat.className} bg-slate-800 text-slate-200 container mx-auto max-w-6xl flex flex-col`}>
         <NextAuthContext>
           <Header/>
           <main className='p-2 flex-grow'>
