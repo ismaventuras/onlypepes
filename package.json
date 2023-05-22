@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "db:docker:init": "docker run -d -p 5432:5432 -v /dev-db:/var/lib/postgresql/data --env-file .env --name dev-db postgres:latest",
+    "db:docker:init": "docker run -d -p 5432:5432 --env-file .env --name dev-db postgres:latest",
     "db:data:generate": "dotenv -e .env -- ts-node ./scripts/db/generate-init-data.ts",
     "db:data:init": "prisma migrate dev && ts-node ./scripts/db/seed-db.ts",
     "db:config:init": "./scripts/init-postgres.sh",
