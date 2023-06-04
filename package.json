@@ -1,0 +1,32 @@
+{
+    "private": true,
+    "prisma": {
+        "schema": "packages/database/prisma/schema.prisma",
+        "seed": "tsx packages/database/src/seed.ts"
+    },
+    "scripts": {
+        "build": "turbo run build",
+        "dev": "turbo run dev",
+        "lint": "turbo run lint",
+        "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+        "db:migrate:deploy": "dotenv -- turbo run db:migrate:deploy",
+        "db:push": "dotenv -- turbo run db:push",
+        "db:seed": "turbo run db:seed",
+        "db:generate": "turbo run db:generate",
+        "test": "dotenv -e .env.test -- turbo run test"
+    },
+    "devDependencies": {
+        "@turbo/gen": "^1.9.7",
+        "dotenv-cli": "^7.2.1",
+        "eslint": "^7.32.0",
+        "prettier": "^2.5.1",
+        "tsx": "latest",
+        "turbo": "^1.9.7"
+    },
+    "name": "onlypepes",
+    "packageManager": "npm@9.5.0",
+    "workspaces": [
+        "apps/web",
+        "packages/*"
+    ]
+}
