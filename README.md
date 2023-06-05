@@ -4,7 +4,7 @@ monorepo using turbo
 
 - apps/web : onlypepes website
 - packages/database: prisma db and onlypepes db functions
-- tsconfig: tsconfig for different packages
+- packages/tsconfig: tsconfig for different packages
 
 ## dev
 
