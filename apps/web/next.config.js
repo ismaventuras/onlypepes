@@ -1,7 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     reactStrictMode: true,
-    transpilePackages: []
+    images:{
+        domains:['cdn.onlypepes.xyz']
+    }
 }
 
 module.exports = nextConfig

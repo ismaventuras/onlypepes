@@ -1,7 +1,7 @@
 #!/bin/bash
 # How to use
 #   chmod +x setup_postgres.sh
-#   npx dotenv -e .env bash -c ./postgresql.sh
+#   set variables on .env files
 
 #sudo apt-get update
 #sudo apt install -y postgresql

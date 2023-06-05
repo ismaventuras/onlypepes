@@ -1,19 +1,36 @@
 'use client'
 import { Pepe } from "@prisma/client"
-import GalleryItem from "./GalleryItem"
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react"
 
-type GalleryProps = {
-    pepes: Pepe[];
-    bookmarks?: Pepe[];
-}
-export default function Gallery({ pepes, bookmarks }: GalleryProps) {
-    const pageSize = 20
-    const sentinelRef = useRef(null);
 
+function GalleryItem({pepe}:{pepe:Pepe}){
+    const [loaded,setLoaded] = useState(false)
+
+    return(
+        <div>
+            {!loaded && 
+            <div className="flex items-center justify-center">
+                <p className="p-5">Loading...</p>
+            </div>
+            }
+            <Image
+                src={pepe.image}
+                alt={`$Pepe #{pepe.id}`}
+                width={512} height={512}
+                className={`rounded shadow-xl w-auto h-auto `}
+                onLoad={()=>setLoaded(true)}
+            />
+        </div>
+    )
+}
+
+export default function Gallery({ pepes }: {pepes:Pepe[]}) {
+    const pageSize = 10
+    const sentinelRef = useRef(null);
     const [items, setItems] = useState<Pepe[]>([])
     const [page, setPage] = useState(1);
-
+    
 
     useEffect(() => {
         const ref = sentinelRef.current
@@ -45,12 +62,10 @@ export default function Gallery({ pepes, bookmarks }: GalleryProps) {
 
     return (
         <>
-            <div className="grid md:grid-cols-2 gap-12">
-                {items.map(pepe => {
-                    const isBookmarked = bookmarks?.some(bookmark => bookmark.id === pepe.id)
-                    return <GalleryItem item={pepe} key={pepe.id} isBookmarked={isBookmarked} />
-
-                })}
+            <div className="grid md:grid-cols-1 gap-12  place-items-center">
+                {items.map(pepe => (
+                    <GalleryItem pepe={pepe} key={pepe.id}/>                    
+                ))}
             </div>
             <div ref={sentinelRef} className="h-1 mt-20" />
         </>

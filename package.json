@@ -6,20 +6,22 @@
     },
     "scripts": {
         "build": "turbo run build",
-        "dev": "turbo run dev",
+        "dev": "dotenv -e .env.dev turbo run dev",
         "lint": "turbo run lint",
         "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-        "db:migrate:deploy": "dotenv -- turbo run db:migrate:deploy",
-        "db:push": "dotenv -- turbo run db:push",
+        "db:migrate:deploy": "turbo run db:migrate:deploy",
+        "db:push": "turbo run db:push",
         "db:seed": "turbo run db:seed",
         "db:generate": "turbo run db:generate",
-        "test": "dotenv -e .env.test -- turbo run test"
+        "db:up": "docker run -d --name onlypepesdevdb -p 5434:5432 --env-file .env.dev postgres:13 && npm run db:init",
+        "db:init": "dotenv -e .env.dev -- turbo run db:push && dotenv -e .env.dev -- turbo run db:seed",
+        "db:down": "docker stop onlypepesdevdb && docker stop onlypepesdevdb",
+        "test": "dotenv -e .env.test -- turbo run test",
+        "prod:vps": ""
     },
     "devDependencies": {
         "@turbo/gen": "^1.9.7",
         "dotenv-cli": "^7.2.1",
-        "eslint": "^7.32.0",
-        "prettier": "^2.5.1",
         "tsx": "latest",
         "turbo": "^1.9.7"
     },
