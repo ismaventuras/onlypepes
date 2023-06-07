@@ -1,12 +1,13 @@
 {
     "name": "telegram-bot",
-    "main": "src/index.ts",
+    "main": "dist/index.js",
+    "types": "dist/index.js",
     "private":true,
     "type": "module",    
     "scripts": {
         "build": "tsc --build",
         "dev": "node dist/index.js",
-        "prod:vps": "pm2 start ecosystem.config.js"
+        "prod:vps": "pm2 start ecosystem.config.cjs"
     },
     "dependencies": {
         "@grammyjs/runner": "^2.0.3",

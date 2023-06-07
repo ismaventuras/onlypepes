@@ -2,7 +2,7 @@ module.exports = {
     apps: [{
       name: "onlypepes-telegram-bot",
       script: "npm",
-      args: "start",
+      args: "run dev",
       env: {
         NODE_ENV: "production",
       }
