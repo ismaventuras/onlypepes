@@ -9,7 +9,6 @@
         "db:seed": "tsx src/seed.ts",
         "db:push": "prisma db push --skip-generate",        
         "dev": "npm run build -- --watch",
-        "test2": "docker-compose up -d && npm run db:push && jest",
         "test":"docker run -d --name onlypepestests -p 5435:5432 --env-file ../../.env.test postgres:13 && npm run db:push && jest && docker stop onlypepestests && docker rm onlypepestests"
     },
     "dependencies": {

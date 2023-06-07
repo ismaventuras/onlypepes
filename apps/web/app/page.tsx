@@ -1,8 +1,6 @@
-import Image from 'next/image'
 import CardWithImage from './components/Card'
 import {getRandomizedPepes} from 'database'
 import Gallery from './components/ScrollableGallery';
-
 
 
 

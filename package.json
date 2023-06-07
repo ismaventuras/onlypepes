@@ -5,19 +5,15 @@
         "seed": "tsx packages/database/src/seed.ts"
     },
     "scripts": {
-        "build": "turbo run build",
+        "build": "dotenv -- turbo run build",
         "dev": "dotenv -e .env.dev turbo run dev",
         "lint": "turbo run lint",
-        "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-        "db:migrate:deploy": "turbo run db:migrate:deploy",
-        "db:push": "turbo run db:push",
-        "db:seed": "turbo run db:seed",
         "db:generate": "turbo run db:generate",
         "db:up": "docker run -d --name onlypepesdevdb -p 5434:5432 --env-file .env.dev postgres:13 && npm run db:init",
         "db:init": "dotenv -e .env.dev -- turbo run db:push && dotenv -e .env.dev -- turbo run db:seed",
         "db:down": "docker stop onlypepesdevdb && docker stop onlypepesdevdb",
-        "test": "dotenv -e .env.test -- turbo run test",
-        "prod:vps": ""
+        "test": "dotenv -e .env.test -- turbo run test",        
+        "prod:vps": "dotenv -- turbo run prod:vps"
     },
     "devDependencies": {
         "@turbo/gen": "^1.9.7",
@@ -28,7 +24,7 @@
     "name": "onlypepes",
     "packageManager": "npm@9.5.0",
     "workspaces": [
-        "apps/web",
+        "apps/*",
         "packages/*"
     ]
 }
