@@ -6,7 +6,7 @@
     },
     "scripts": {
         "build": "dotenv -- turbo run build",
-        "dev": "dotenv -e .env.dev turbo run dev",
+        "dev": "dotenv -e .env.dev -- turbo run dev",
         "lint": "turbo run lint",
         "db:generate": "turbo run db:generate",
         "db:up": "docker run -d --name onlypepesdevdb -p 5434:5432 --env-file .env.dev postgres:13 && npm run db:init",

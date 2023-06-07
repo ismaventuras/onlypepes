@@ -20,3 +20,14 @@ npm run dev
 # docker service must be up
 npm run tests
 ```
+
+
+## prod
+
+- configure nginx and postgres
+
+- install and run
+
+```bash
+
+```
